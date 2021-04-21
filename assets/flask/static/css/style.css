@@ -1,0 +1,33 @@
+img {
+    opacity: 0.9;
+    /* height: 1200px;
+    width: 630px; */
+}
+
+.jumbotron {
+    background: url("../images/cancercells3.jpg");
+    background-size: cover;
+    justify-content: center;
+    padding-top: 20em;
+    padding-bottom: 20em;
+    opacity: 1.0;
+  }
+
+.jumbotron h1 {
+    color: white;
+    -webkit-text-stroke: 3px black;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.jumbotron h2 {
+    color: white;
+    -webkit-text-stroke: 1.2px black;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.transbox {
+    background-color: rgba(73, 224, 247, 0.5);
+    border: 1px solid black;
+}
