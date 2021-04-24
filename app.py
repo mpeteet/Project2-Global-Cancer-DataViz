@@ -5,6 +5,7 @@ from sqlalchemy import create_engine, inspect
 from flask import Flask, jsonify, render_template
 # from password import password
 import pandas as pd
+import psycopg2
 
 # Create engine and connection
 engine = create_engine(f"postgresql://jicssazuzgoail:a0c424d25817964a8cf3affd77b289e0dd6a343351eea5dbfc893600d86ddb6e@ec2-52-23-45-36.compute-1.amazonaws.com:5432/d9h6bju2mm69af")
