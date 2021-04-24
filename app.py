@@ -3,7 +3,7 @@ import sqlalchemy
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, inspect
 from flask import Flask, jsonify, render_template
-from password import password
+# from password import password
 import pandas as pd
 
 # Create engine and connection
