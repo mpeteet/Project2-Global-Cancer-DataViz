@@ -1,7 +1,7 @@
 ## Project2-Global-Cancer-DataViz
 ##
 #### Design & Technical Overview
-###### - Backend development, databased: PostgreSQL
+###### - Backend development, database: PostgreSQL
 ###### - Web framework/workflow engine: Flask/SQLAlchemy
 ###### - Frontend devlopment: HTML/CSS, JavaScript
 ##
