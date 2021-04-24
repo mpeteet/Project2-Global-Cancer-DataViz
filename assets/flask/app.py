@@ -1,3 +1,4 @@
+# Import dependencies
 import sqlalchemy
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, inspect
@@ -5,39 +6,52 @@ from flask import Flask, jsonify, render_template
 from password import password
 import pandas as pd
 
+# Create engine and connection
 engine = create_engine(f"postgresql://postgres:{password}@localhost:5432/cancer_db")
 conn = engine.connect()
-# inspector = inspect(engine)
-# inspector.get_table_names()
 
-
+# Initialize Flask app
 app = Flask(__name__)
 
+# Create home route that run the index.html
 @app.route("/")
 def home():
     return render_template("index.html")
 
-@app.route("/age")
+# Create a route that returns a dictionary of a list of the regions
+@app.route("/regions")
 def data():
     session = Session(engine)
-    age_data = pd.read_sql("select * from by_age", conn).to_dict(orient="split")
-    return jsonify(age_data)
+    regions_list = pd.read_sql("select entity from by_age", conn).to_dict(orient="list")
     session.close()
-    
-@app.route("/type")
-def data2():
-    session = Session(engine)
-    type_data = pd.read_sql("select * from by_type", conn).to_dict(orient="list")
-    return jsonify(type_data)
-    session.close()
+    return jsonify(regions_list)
 
-@app.route("/death")
-def data3():
+# Create a route that returns a dictionary of age data for a specific region
+@app.route("/age/<entity>")
+def data2(entity):
+    query = f"select * from by_age where entity like '{entity}'"
     session = Session(engine)
-    death_type_data = pd.read_sql("select * from death_by_type", conn).to_dict(orient="records")
-    return jsonify(death_type_data)
+    age_data = pd.read_sql(query, conn).to_dict(orient="records")
     session.close()
+    return jsonify(age_data)
+
+# Create a route that returns a dictionary of type data for a specific region
+@app.route("/type/<entity>")
+def data3(entity):
+    query = f"select * from by_type where entity like '{entity}'"
+    session = Session(engine)
+    type_data = pd.read_sql(query, conn).to_dict(orient="records")
+    session.close()
+    return jsonify(type_data)
+
+# Create a route that returns a dictionary of death by type data for a specific region
+@app.route("/death/<entity>")
+def data4(entity):
+    query = f"select * from death_by_type where entity like '{entity}'"
+    session = Session(engine)
+    death_type_data = pd.read_sql(query, conn).to_dict(orient="records")
+    session.close()
+    return jsonify(death_type_data)
     
 if __name__ == "__main__":
     app.run()
-    

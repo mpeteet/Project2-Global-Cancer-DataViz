@@ -7,43 +7,123 @@
         <link rel="stylesheet" href="../static/css/style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     </head>
-    <body style="background-color: #03b1fc;">
+    <body style="background-color: #999aa8;">
         <div class="jumbotron text-center">
             <div class="container">
                 <div class="row">
                     <div class="transbox">
-                        <h1 style="font-size: 5em;">Global Cancer Data Analysis (2017)</h1>
-                        <div class="controlsRow">
-                            <div class="collapsibleList">
-                                <h2>Select Country</h2>
-                                <select id="selDataset"
-                                onchange="optionChanged(this.value)"></select>
-                            </div>
-                            <div class="panel panel-primary">
-                                <div class="panel">
-                                    </div>
-                        </div>
+                        <h3 style="font-size: 5em;">Global Cancer Data Visualizations (2017)</h3>
+                        <h5 style="font-size: 2em;">Data retrieved from ourworldindata.org/cancer</h5>
                     </div>
+                </div>
+            </div>
         </div>
-        </div>
-        
-        
-    </div>
-    </div>
     <div class="container">
         <div class="row">
-            <div id="#byage class=col-12" style="background-color: white;">
-                <p>fdsfsafdsafdsafdafdsfsafdsafdsafdafdsf
-                    safdsafdsafdafdsfsafdsafdsafdafdsfsaf
-                    dsafdsafdafdsfsafdsafdsafdafdsfsafdsafdsafdafdsf
-                    afdsafdsafdafdsfsafdsafdsafdafdsfsafdsafdsafdafdsfsafdsafd
-                    safdafdsfsafdsafdsafdafdsfsafdsafdsafdafdsfsafdsafdsafdafdsfsafdsafdsafdaf
-                    dsfsafdsafdsafdafdsfsafdsafdsafdafdsfsafdsafdsafdafdsfsafdsafdsafdafdsfsafdsafdsafda</p>
+            <div class="col-12" style="background-color: white;">
+                <div class="controlsRow">
+                    <div class="collapsibleList">
+                        <h5>Region</h5>
+                        <select id="selDataset"
+                        onchange="optionChanged(this.value)"></select>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel text-center">
+                        </div>
+                    </div>
+                </div>
+            <div>
+                <button id="ageFullScreen">Fullscreen</button>
             </div>
-            <div class="col-6">
-                
+            <hr>
+            <h3 class="text-center" style="padding-top: 2em">Prevalence (%) of Cancer per Age Group (2017)</h3>
+                <div id="byage">
+                </div>
+                <hr>
+                <p>Globally, ~6% of those over 70 had cancer in 2017. Of the population younger than 50 the prevalence is under 1%. 
+                   The general trend across all regions is that older age groups have more prevalence of cancer, but it does vary
+                   slightly depending on region. This could be for various reasons pertaining to quality of life, based on
+                   economic, environmental, and other factors.  
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12" style="background-color: white;">
+                <div class="controlsRow">
+                    <div class="collapsibleList">
+                        <h5>Region</h5>
+                        <select id="selDataset2"
+                        onchange="optionChanged2(this.value)"></select>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel">
+                        </div>
+                    </div>
+                </div>
+            <button id="typeFullScreen">Fullscreen</button>
+            <hr>
+                <h3 class="text-center" style="padding-top: 2em">Prevalence (%) of Cancer Type for Total Population (2017)</h3>
+            <div id="bytype">
+            </div>
+            <hr>
+                <p>Breast cancer is the most common cancer worldwide. The frequency of certain cancer types per region varies 
+                   based on a multitude of factors. For instance, in areas where air quality is poor, it can be expected to see
+                   high occurences of trachael, bronchus, and lung cancer. Stomach cancer is more common in Asian countries,
+                   which is believed to be due largely in part to diet.   
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12" style="background-color: white;">
+                <div class="controlsRow">
+                    <div class="collapsibleList">
+                        <h5>Region</h5>
+                        <select id="selDataset3"
+                        onchange="optionChanged3(this.value)"></select>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel">
+                            </div>
+                </div>
+            </div>
+            <button id="deathFullScreen">Fullscreen</button>
+            <hr>
+            <h3 class="text-center" style="padding-top: 2em">Total Deaths per Cancer Type (2017)</h3>
+            <div id="deathbytype">
+            </div>
+            <hr>
+                <p>Unfortunately, cancer is a leading cause of death worldwide, and will probably stay that way until more advances
+                   are made in battling it. Trachael, bronchus, and lung cancer, particularly lung, has a very high fatality rate, 
+                   which could be due to there being many areas with poor air quality, as well as limited treatment options. One would
+                   expect that frequency of type would generally reflect higher death rates. Certain types are also just very hard to 
+                   beat, such as pancreatic cancer.
+                </p>
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="http://d3js.org/d3.v6.min.js"></script>
+    <script src="/static/js/screenfull.js"></script>
+    <script>document.getElementById('ageFullScreen').addEventListener('click', ()=>{
+        const element = document.getElementById('byage')
+        if(screenfull.isEnabled){
+            screenfull.toggle(element);
+        }
+    });</script>
+    <script>document.getElementById('typeFullScreen').addEventListener('click', ()=>{
+        const element = document.getElementById('bytype')
+        if(screenfull.isEnabled){
+            screenfull.toggle(element);
+        }
+    });</script>
+    <script>document.getElementById('deathFullScreen').addEventListener('click', ()=>{
+        const element = document.getElementById('deathbytype')
+        if(screenfull.isEnabled){
+            screenfull.toggle(element);
+        }
+    });</script>
+    
+<script src="/static/js/app.js"></script>
 </body>
 </html>

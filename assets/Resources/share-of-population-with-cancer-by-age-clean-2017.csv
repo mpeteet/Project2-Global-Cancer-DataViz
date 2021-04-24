@@ -1,4 +1,4 @@
-entity,code,year,all_ages,under_five,five_to_fourteen,fifteen_to_fortynine,fifty_to_sixtynine,seventy_plus
+entity,code,year,All Ages,Under 5,5 to 14,15 to 49,50 to 69,Over 70
 Afghanistan,AFG,2017,0.277,0.14,0.082,0.285,1.283,1.912
 Albania,ALB,2017,1.423,0.911,0.396,0.786,2.421,3.576
 Algeria,DZA,2017,0.534,0.127,0.104,0.394,1.327,2.126
